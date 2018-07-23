@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Gold: {{session.gold}}</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-auto">
+                <div class="card" style="width: 13rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Farm</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">(Earn 10-20 Gold)</h6>
+                        <form action="/process" method="post">
+                            <input type="hidden" name="building" value="farm">
+                            <input class="butt" type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <div class="card" style="width: 13rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Cave</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">(Earn 5-10 Gold)</h6>
+                        <form action="/process" method="post">
+                            <input type="hidden" name="building" value="cave">
+                            <input class="butt" type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <div class="card" style="width: 13rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">House</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">(Earn 2-5 Gold)</h6>
+                        <form action="/process" method="post">
+                            <input type="hidden" name="building" value="house">
+                            <input class="butt" type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-auto">
+                <div class="card" style="width: 13rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Casino</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">(Earn/Lose 0-50 Gold)</h6>
+                        <form action="/process" method="post">
+                            <input type="hidden" name="building" value="casino">
+                            <input class="butt" type="submit" value="Find Gold!">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="display">
+            {% for each in session.activities | reverse%}
+                {% if each.win %}
+                    <p class="green">You earned {{each.pull}} gold from the {{each.building}}! ({{each.time}})</p>
+                {% else %}
+                    <p class="red">You lost {{each.pull}} gold at the {{each.building}}! ({{each.time}})</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <a href="/reset"><button class="btn btn-primary">RESET</button></a>
+    </div>
+</body>
+</html>

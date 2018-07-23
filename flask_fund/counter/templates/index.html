@@ -1,0 +1,25 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Counter</title>
+</head>
+<body>
+        <div class="main-content">
+            <h1>Counter</h1>
+            {% if session['visits'] == 1 %}
+                <p>You have visited this site 1 time</p>
+                {% else %}
+                    <p>You have visited this site {{session['visits']}} times</p>
+                {% endif %}
+            <form action="/create_or_destroy" method="post">
+                <button class="btn btn-success" type="submit" name="action" value="add">Add visits</button>
+                <button class="btn btn-info" type="submit" name="action" value="reset">Reset</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

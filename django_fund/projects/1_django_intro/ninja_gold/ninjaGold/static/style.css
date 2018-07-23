@@ -1,0 +1,16 @@
+.butt{
+    margin-left: 38px;
+}
+.display{
+    margin-top: 15px;
+    width: 920px;
+    border: solid 2px black;
+    height: 100px;
+    overflow-y: scroll;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
